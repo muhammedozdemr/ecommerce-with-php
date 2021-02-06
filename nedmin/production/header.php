@@ -68,11 +68,8 @@ $ayarcek=$ayarsor->fetch(PDO::FETCH_ASSOC);
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                	 <li>
-                	 	<a href="index.php">
-                	 		<i class="fa fa-home"></i> Anasayfa
-                	 	</a>
-                	 </li>              
+                	 <li><a href="index.php"><i class="fa fa-home"></i> Anasayfa	</a></li>              
+                   <li><a href="hakkimizda.php"><i class="fa fa-info"></i> Hakkımızda  </a></li>              
                   <li>
                   	<a>
                   		<i class="fa fa-cogs"></i> Site Ayarları 
