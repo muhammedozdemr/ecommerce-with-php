@@ -1,5 +1,33 @@
 <?php
+ob_start();
+session_start();
 include 'baglan.php';
+
+//kullanıcı giriş işlemleri
+if(isset($_POST['admingiris']))
+{
+	$kullanici_mail=$_POST['kullanici_mail'];
+	$kullanici_password=md5($_POST['kullanici_password']);
+
+	$kullanicisor=$db->prepare("SELECT * FROM kullanici WHERE kullanici_mail=:mail and kullanici_password=:password and kullanici_yetki=:yetki");
+	$kullanicisor->execute(array(
+		'mail'=>$kullanici_mail,
+		'password'=>$kullanici_password,
+		'yetki'=>1
+	));
+
+	$say=$kullanicisor->rowCount();
+
+	if($say==1)
+	{
+		$_SESSION['kullanici_mail']=$kullanici_mail;
+		header("Location:../production/index.php");
+	}else{
+		header("Location:../production/login.php?durum=no");
+	}
+
+}
+
 
 //Genel Ayar Güncelle
 if(isset($_POST['genelayarkaydet']))
