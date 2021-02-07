@@ -13,8 +13,16 @@ $kullanicisor=$db->prepare("SELECT * FROM kullanici WHERE kullanici_mail=:mail")
 $kullanicisor->execute(array(
   'mail' => $_SESSION['kullanici_mail']
 ));
+$say=$kullanicisor->rowCount();
 $kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
+
+if($say==0)
+{
+  header("Location:login.php?durum=izinsiz");
+  exit;
+}
  ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -126,19 +134,12 @@ $kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">John Doe
+                    <img src="images/img.jpg" alt=""><?php echo $kullanicicek['kullanici_adsoyad'] ?>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Profile</a></li>
-                    <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                    </li>
-                    <li><a href="javascript:;">Help</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="javascript:;"> Profil</a></li>  
+                    <li><a href="logout.php"><i class="fa fa-sign-out pull-right"></i> Çıkış</a></li>
                   </ul>
                 </li>
 

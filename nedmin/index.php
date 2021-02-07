@@ -1,0 +1,10 @@
+<?php 
+ob_start();
+session_start();
+if(isset($_SESSION["kullanici_mail"])){
+    Header('Location:production');
+}
+else{
+    Header('Location:production/login.php');
+}
+?>

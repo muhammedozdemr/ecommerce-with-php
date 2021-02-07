@@ -24,6 +24,7 @@ if(isset($_POST['admingiris']))
 		header("Location:../production/index.php");
 	}else{
 		header("Location:../production/login.php?durum=no");
+		exit;
 	}
 
 }
