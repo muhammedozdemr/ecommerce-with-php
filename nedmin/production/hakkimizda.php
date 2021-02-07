@@ -7,6 +7,7 @@ $hakkimizdasor->execute(array(
 
 $hakkimizdacek=$hakkimizdasor->fetch(PDO::FETCH_ASSOC);
 ?>  
+
    <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
@@ -58,7 +59,7 @@ $hakkimizdacek=$hakkimizdasor->fetch(PDO::FETCH_ASSOC);
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">İçerik  <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" name="hakkimizda_icerik" id="first-name" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $hakkimizdacek['hakkimizda_icerik'] ?>">
+                         <textarea class="ckeditor" id="editor1" name="hakkimizda_icerik"><?php echo $hakkimizdacek['hakkimizda_icerik'] ?></textarea>
                         </div>
                       </div>
                        <div class="form-group">
@@ -100,6 +101,32 @@ $hakkimizdacek=$hakkimizdasor->fetch(PDO::FETCH_ASSOC);
             </div>
           </div>
         </div>
+
         <!-- /page content -->
+
+        <script type="text/javascript">
+
+              CKEDITOR.replace( 'editor1',
+
+
+              {
+
+
+                filebrowserBrowserUrl:'ckfinder/ckfinder.html',
+
+                filebrowserImageBrowserUrl:'ckfinder/ckfinder.html?type=Images',
+
+                filebrowserFlashBrowserUrl:'ckfinder/ckfinder.html?type=Flash',
+
+                filebrowserUploadUrl:'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+
+                forcePasteAsPlainText:true
+
+              }
+
+              );
+
+
+            </script>
 
 <?php include 'footer.php'; ?>       
