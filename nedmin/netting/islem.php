@@ -184,5 +184,29 @@ if(isset($_POST['hakkimizdakaydet']))
 	}
 }
 
+//Kullanıcı Düzenle
+if(isset($_POST['kullaniciduzenle']))
+{
+	$kullanici_id=$_POST['kullanici_id'];
+
+	$ayarkaydet=$db->prepare("UPDATE kullanici SET
+		kullanici_tc=:kullanici_tc,
+		kullanici_adsoyad=:kullanici_adsoyad,
+		kullanici_durum=:kullanici_durum
+		WHERE kullanici_id={$_POST['kullanici_id']}");
+
+	$update=$ayarkaydet->execute(array(
+		'kullanici_tc' =>$_POST['kullanici_tc'],
+		'kullanici_adsoyad' =>$_POST['kullanici_adsoyad'],
+		'kullanici_durum' =>$_POST['kullanici_durum']	
+	));
+
+	if ($update) {
+		header("Location:../production/kullanici-duzenle.php?kullanici_id=$kullanici_id&durum=ok");
+	}else{
+		header("Location:../production/kullanici-duzenle.php?kullanici_id=$kullanici_id&durum=no");
+	}
+}
+
  
 ?>

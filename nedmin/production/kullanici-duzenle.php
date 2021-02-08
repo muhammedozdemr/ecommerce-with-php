@@ -1,4 +1,13 @@
-<?php include 'header.php'; ?>  
+<?php 
+include 'header.php'; 
+
+$kullanicisor=$db->prepare("SELECT * FROM kullanici WHERE kullanici_id=:id");
+$kullanicisor->execute(array(
+  'id' => $_GET['kullanici_id']
+));
+
+$kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
+?>  
    <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
@@ -8,7 +17,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Mail Ayarlar 
+                    <h2>Kullanıcı Düzenle 
                     	<small>	
                     	<?php if($_GET['durum']=="ok"){?>
                     		<b style="color: green">İşlem Başarılı...</b>
@@ -39,48 +48,64 @@
                     
                     <form action="../netting/islem.php" method="POST" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 
+                      <?php 
+                      $zaman=explode(" ",$kullanicicek['kullanici_zaman']);
+                      ?>
+
+                       <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Kayıt Tarihi <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="date" name="kullanici_zaman" disabled="" id="first-name" class="form-control col-md-7 col-xs-12" value="<?php echo $zaman[0] ?>">
+                        </div>
+                      </div>
+                       <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Kayıt Saati <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="time" name="kullanici_zaman" disabled="" id="first-name" class="form-control col-md-7 col-xs-12" value="<?php echo $zaman[1] ?>">
+                        </div>
+                      </div>
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">SMTP Host <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">TC <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" name="ayar_smtphost" id="first-name" class="form-control col-md-7 col-xs-12" value="<?php echo $ayarcek['ayar_smtphost'] ?>">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">SMTP User <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" name="ayar_smtpuser" id="first-name" class="form-control col-md-7 col-xs-12" value="<?php echo $ayarcek['ayar_smtpuser'] ?>">
+                          <input type="text" name="kullanici_tc" id="first-name" class="form-control col-md-7 col-xs-12" value="<?php echo $kullanicicek['kullanici_tc'] ?>">
                         </div>
                       </div>
                        <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">SMTP Password <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Ad Soyad <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" name="ayar_smtppassword" id="first-name" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $ayarcek['ayar_smtppassword'] ?>">
+                          <input type="text" name="kullanici_adsoyad" id="first-name" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $kullanicicek['kullanici_adsoyad'] ?>">
                         </div>
                       </div>
                        <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">SMTP Port <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Kullanıcı Mail <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" name="ayar_smtpport" id="first-name" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $ayarcek['ayar_smtpport'] ?>">
+                          <input type="text" name="kullanici_mail" id="first-name" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $kullanicicek['kullanici_mail'] ?>" disabled>
                         </div>
                       </div>
                        <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Bakım <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Kullanıcı Durum <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" name="ayar_bakim" id="first-name" required="required" class="form-control col-md-7 col-xs-12" value="<?php echo $ayarcek['ayar_bakim'] ?>">
+                          <select id="heard" class="form-control" name="kullanici_durum">
+                          <option value="1" <?php echo $kullanicicek['kullanici_durum']=='1' ? 'selected=""' : ''; ?>>Aktif</option>
+                          <option value="0" <?php if ($kullanicicek['kullanici_durum']==0)  { echo 'selected=""'; }?>>Pasif</option>
+                          </select>
                         </div>
+
                       </div>
-                     
-                   
+
+                      <input type="hidden" name="kullanici_id" value="<?php echo $kullanicicek['kullanici_id'] ?>">
+                      
                      
                       <div class="ln_solid"></div>
                       <div class="form-group">
                         <div align="right" class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                          <button type="submit" name="mailayarkaydet" class="btn btn-success">Güncelle</button>
+                          <button type="submit" name="kullaniciduzenle" class="btn btn-success">Güncelle</button>
                           
                         </div>
                       </div>
