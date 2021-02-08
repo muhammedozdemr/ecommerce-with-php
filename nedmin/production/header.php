@@ -86,6 +86,7 @@ if($say==0)
                 <ul class="nav side-menu">
                 	 <li><a href="index.php"><i class="fa fa-home"></i> Anasayfa	</a></li>              
                    <li><a href="hakkimizda.php"><i class="fa fa-info"></i> Hakkımızda  </a></li>              
+                   <li><a href="kullanici.php"><i class="fa fa-users"></i> Kullanıcılar  </a></li>              
                   <li>
                   	<a>
                   		<i class="fa fa-cogs"></i> Site Ayarları 
