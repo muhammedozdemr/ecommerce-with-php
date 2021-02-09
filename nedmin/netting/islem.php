@@ -2,6 +2,7 @@
 ob_start();
 session_start();
 include 'baglan.php';
+include '../fonksiyon.php';
 
 //kullanıcı giriş işlemleri
 if(isset($_POST['admingiris']))
@@ -220,6 +221,37 @@ if($_GET['kullanicisil']=="ok"){
 		header("Location:../production/kullanici.php?sil=ok");
 	}else{
 		header("Location:../production/kullanici.php?sil=no");
+	}
+}
+
+//Menü Düzenle
+if(isset($_POST['menuduzenle']))
+{
+	$menu_id=$_POST['menu_id'];
+	$menu_seourl=seo($_POST['menu_ad']);
+
+	$ayarkaydet=$db->prepare("UPDATE menu SET
+		menu_ad=:menu_ad,
+		menu_detay=:menu_detay,
+		menu_url=:menu_url,
+		menu_sira=:menu_sira,
+		menu_seourl=:menu_seourl,
+		menu_durum=:menu_durum
+		WHERE menu_id={$_POST['menu_id']}");
+
+	$update=$ayarkaydet->execute(array(
+		'menu_ad' =>$_POST['menu_ad'],
+		'menu_detay' =>$_POST['menu_detay'],
+		'menu_url' =>$_POST['menu_url'],
+		'menu_sira' =>$_POST['menu_sira'],
+		'menu_seourl' =>$menu_seourl,
+		'menu_durum' =>$_POST['menu_durum']
+	));
+
+	if ($update) {
+		header("Location:../production/menu-duzenle.php?menu_id=$menu_id&durum=ok");
+	}else{
+		header("Location:../production/menu-duzenle.php?menu_id=$menu_id&durum=no");
 	}
 }
 
