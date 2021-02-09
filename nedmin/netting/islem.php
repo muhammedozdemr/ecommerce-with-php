@@ -269,6 +269,35 @@ if($_GET['menusil']=="ok"){
 		header("Location:../production/menu.php?sil=no");
 	}
 }
+//Menü Ekle
+if(isset($_POST['menukaydet']))
+{
 
+	$menu_seourl=seo($_POST['menu_ad']);
+
+	$ayarekle=$db->prepare("INSERT INTO menu SET
+		menu_ad=:menu_ad,
+		menu_detay=:menu_detay,
+		menu_url=:menu_url,
+		menu_sira=:menu_sira,
+		menu_seourl=:menu_seourl,
+		menu_durum=:menu_durum
+		");
+
+	$update=$ayarekle->execute(array(
+		'menu_ad' =>$_POST['menu_ad'],
+		'menu_detay' =>$_POST['menu_detay'],
+		'menu_url' =>$_POST['menu_url'],
+		'menu_sira' =>$_POST['menu_sira'],
+		'menu_seourl' =>$menu_seourl,
+		'menu_durum' =>$_POST['menu_durum']
+	));
+
+	if ($insert) {
+		header("Location:../production/menu.php?durum=ok");
+	}else{
+		header("Location:../production/menu.php?durum=no");
+	}
+}
  
 ?>
