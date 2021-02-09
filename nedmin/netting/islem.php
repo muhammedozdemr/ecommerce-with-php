@@ -294,9 +294,9 @@ if(isset($_POST['menukaydet']))
 	));
 
 	if ($insert) {
-		header("Location:../production/menu.php?durum=ok");
+		header("Location:../production/menu.php");
 	}else{
-		header("Location:../production/menu.php?durum=no");
+		header("Location:../production/menu.php");
 	}
 }
  
