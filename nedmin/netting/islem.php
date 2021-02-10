@@ -30,6 +30,35 @@ if(isset($_POST['admingiris']))
 
 }
 
+//Logo Güncelle
+if(isset($_POST['logoduzenle'])){
+
+	$uploads_dir = '../../dimg';//resmin yüklenecegi adres
+	@$tmp_name = $_FILES['ayar_logo']["tmp_name"];//önbelleğe alma işlemi
+	@$name = $_FILES['ayar_logo']["name"];//isim atama
+
+	$benzersizsayi4=rand(20000,32000);//random değer atama
+	$refimgyol=substr($uploads_dir, 6)."/".$benzersizsayi4.$name;//6 karakterden sonrakileri yaz
+
+	@move_uploaded_file($tmp_name,"$uploads_dir/$benzersizsayi4$name");//resmi klasöre yükle
+
+	$duzenle=$db->prepare("UPDATE ayar SET
+		ayar_logo=:logo
+		WHERE ayar_id=0");
+	$update=$duzenle->execute(array(
+		'logo' => $refimgyol
+	));
+
+	if($update){
+		$resimsilunlink=$_POST['eski_yol'];
+		unlink("../../$resimsilunlink");
+
+		Header("Location:../production/genel-ayar.php?durum=ok");
+	}else {
+		Header("Location:../production/genel-ayar.php?durum=no");
+	}
+}
+
 
 //Genel Ayar Güncelle
 if(isset($_POST['genelayarkaydet']))
