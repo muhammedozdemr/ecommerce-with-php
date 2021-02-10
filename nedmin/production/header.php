@@ -2,6 +2,7 @@
 ob_start();
 session_start();
 include '../netting/baglan.php';
+include '../fonksiyon.php';
 
 $ayarsor=$db->prepare("SELECT * FROM ayar WHERE ayar_id=:id");
 $ayarsor->execute(array(
