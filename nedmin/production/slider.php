@@ -1,7 +1,7 @@
 <?php 
 include 'header.php';
-$menusor=$db->prepare("SELECT * FROM menu");
-$menusor->execute();
+$slidersor=$db->prepare("SELECT * FROM slider");
+$slidersor->execute();
 
  ?>  
    <!-- page content -->
@@ -23,7 +23,7 @@ $menusor->execute();
                  		 </small>
                  	</h2>
                     <ul class="nav navbar-right panel_toolbox">
-                      <a href="menu-ekle.php"><button class="btn btn-success btn-xs">Yeni Ekle</button></a>
+                      <a href="slider-ekle.php"><button class="btn btn-success btn-xs">Yeni Ekle</button></a>
                     </ul>
                     <div class="clearfix"></div>
                     
@@ -34,31 +34,33 @@ $menusor->execute();
                       <thead>
                         <tr>
                           <th>S.No</th>
-                          <th>Menü Ad</th>
-                          <th>Menü URL</th>
-                          <th>Menü Sıra</th>
-                          <th>Menü Durum</th>
+                          <th>Resim</th>
+                          <th>Ad</th>
+                          <th>URL</th>
+                          <th>Sıra</th>
+                          <th>Durum</th>
                           <th></th>
                           <th></th>
                         </tr>
                       </thead>
                       <tbody> 
-                      <?php $say=0; while($menucek=$menusor->fetch(PDO::FETCH_ASSOC)) {$say++?>                      
+                      <?php $say=0; while($slidercek=$slidersor->fetch(PDO::FETCH_ASSOC)) {$say++?>                      
                         <tr>
-                          <td width="20"><?php echo $say; ?></td>
-                          <td><?php echo $menucek['menu_ad'] ?></td>
-                          <td><?php echo $menucek['menu_url'] ?></td>
-                          <td><?php echo $menucek['menu_sira'] ?></td>
+                          <td width="20"><?php echo $say ?></td>
+                          <td><?php echo $slidercek['slider_resimyol'] ?></td>
+                          <td><?php echo $slidercek['slider_ad'] ?></td>
+                          <td><?php echo $slidercek['slider_url'] ?></td>
+                          <td><?php echo $slidercek['slider_sira'] ?></td>
                           <td>
-                          	<?php if ($menucek['menu_durum']==1) {?>
+                          	<?php if ($slidercek['slider_durum']==1) {?>
                           		<button class="btn btn-success btn-xs">Aktif</button>
                           	<?php }else {?>
                           		<button class="btn btn-danger btn-xs">Pasif</button>
                           	<?php } ?>
                           		
                           </td>         
-                          <td><a href="menu-duzenle.php?menu_id=<?php echo $menucek['menu_id'] ?>"><button class="btn btn-primary btn-xs">Düzenle</button></a></td>
-                          <td><a href="../netting/islem.php?menu_id=<?php echo $menucek['menu_id']?>&menusil=ok"><button class="btn btn-danger btn-xs">Sil</button></td>
+                          <td><a href="slider-duzenle.php?slider_id=<?php echo $slidercek['slider_id'] ?>"><button class="btn btn-primary btn-xs">Düzenle</button></a></td>
+                          <td><a href="../netting/islem.php?slider_id=<?php echo $slidercek['slider_id']?>&menusil=ok"><button class="btn btn-danger btn-xs">Sil</button></td>
                           	
                         </tr>
                     <?php } ?>
