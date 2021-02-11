@@ -188,6 +188,11 @@ $ayarcek=$ayarsor->fetch(PDO::FETCH_ASSOC);
 							<div class="clearfix"></div>
 						</div>
 					</div>
+					<ul class="small-menu"><!--small-nav -->
+						<li><a href="" class="myacc">My Account</a></li>
+						<li><a href="" class="myshop">Shopping Chart</a></li>
+						<li><a href="" class="mycheck">Checkout</a></li>
+					</ul><!--small-nav -->
 				</div>
 			</div>
 		</div>
