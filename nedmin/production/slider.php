@@ -60,7 +60,7 @@ $slidersor->execute();
                           		
                           </td>         
                           <td><a href="slider-duzenle.php?slider_id=<?php echo $slidercek['slider_id'] ?>"><button class="btn btn-primary btn-xs">Düzenle</button></a></td>
-                          <td><a href="../netting/islem.php?slider_id=<?php echo $slidercek['slider_id']?>&menusil=ok"><button class="btn btn-danger btn-xs">Sil</button></td>
+                          <td><a href="../netting/islem.php?slider_id=<?php echo $slidercek['slider_id']?>&slidersil=ok"><button class="btn btn-danger btn-xs">Sil</button></td>
                           	
                         </tr>
                     <?php } ?>

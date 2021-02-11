@@ -353,8 +353,8 @@ if(isset($_POST['sliderkaydet'])){
     $insert=$kaydet->execute(array(
      'slider_ad' => $_POST['slider_ad'],
      'slider_link' => $_POST['slider_link'],
-     'sira' => $_POST['slider_sira'],
-     'slider_sira' => $_POST['slider_durum'],
+     'slider_sira' => $_POST['slider_sira'],
+     'slider_durum' => $_POST['slider_durum'],
      'slider_resimyol'=> $refimgyol,
      ));
         
@@ -448,7 +448,21 @@ if(isset($_POST["sliderduzenle"])){
         }
 
        }
-   
+
+  //Slider Sil
+      
+   if($_GET['slidersil']=="ok"){
+	$sil=$db->prepare("DELETE FROM slider WHERE slider_id=:id");
+	$kontrol=$sil->execute(array(
+		'id' => $_GET['slider_id']
+	));
+
+	if($kontrol){
+		header("Location:../production/slider.php?sil=ok");
+	}else{
+		header("Location:../production/slider.php?sil=no");
+	}
+}
 
 
  
