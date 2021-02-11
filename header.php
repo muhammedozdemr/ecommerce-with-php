@@ -51,33 +51,33 @@ $ayarcek=$ayarsor->fetch(PDO::FETCH_ASSOC);
 				<div class="col-md-8">
 					<div class="pushright">
 						<div class="top">
-							<a href="#" id="reg" class="btn btn-default btn-dark">Login<span>-- Or --</span>Register</a>
+							<a href="#" id="reg" class="btn btn-default btn-dark">Giriş Yap<span>-- Or --</span>Kayıt Ol</a>
 							<div class="regwrap">
 								<div class="row">
 									<div class="col-md-6 regform">
 										<div class="title-widget-bg">
-											<div class="title-widget">Login</div>
+											<div class="title-widget">Kullanıcı Girişi</div>
 										</div>
 										<form role="form">
 											<div class="form-group">
-												<input type="text" class="form-control" id="username" placeholder="Username">
+												<input type="text" class="form-control" id="username" placeholder="Kullanıcı Adı">
 											</div>
 											<div class="form-group">
-												<input type="password" class="form-control" id="password" placeholder="password">
+												<input type="password" class="form-control" id="password" placeholder="Parola">
 											</div>
 											<div class="form-group">
-												<button class="btn btn-default btn-red btn-sm">Sign In</button>
+												<button class="btn btn-default btn-red btn-sm">Giriş Yap</button>
 											</div>
 										</form>
 									</div>
 									<div class="col-md-6">
 										<div class="title-widget-bg">
-											<div class="title-widget">Register</div>
+											<div class="title-widget">Kayıt Ol</div>
 										</div>
 										<p>
-											New User? By creating an account you be able to shop faster, be up to date on an order's status...
+											Yeni Kullanıcı mısın? Alışverişe başlamak için kayıt olmalısın.
 										</p>
-										<button class="btn btn-default btn-yellow">Register Now</button>
+										<a href="register.php"><button class="btn btn-default btn-yellow">Kayıt Ol</button></a>
 									</div>
 								</div>
 							</div>
