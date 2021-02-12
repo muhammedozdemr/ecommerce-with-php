@@ -26,13 +26,13 @@
 
 				<?php 
 
-				if ($_GET['durum']=="farklisifre") {?>
+				if ($_GET['durum']=="farkliparola") {?>
 
 				<div class="alert alert-danger">
 					<strong>Hata!</strong> Girdiğiniz şifreler eşleşmiyor.
 				</div>
 					
-				<?php } elseif ($_GET['durum']=="eksiksifre") {?>
+				<?php } elseif ($_GET['durum']=="eksikparola") {?>
 
 				<div class="alert alert-danger">
 					<strong>Hata!</strong> Şifreniz minimum 6 karakter uzunluğunda olmalıdır.

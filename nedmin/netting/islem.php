@@ -4,7 +4,108 @@ session_start();
 include 'baglan.php';
 include '../fonksiyon.php';
 
-//kullanıcı giriş işlemleri
+//Kullanıcı Kaydet
+if (isset($_POST['kullanicikaydet'])) {
+
+	
+	echo $kullanici_adsoyad=htmlspecialchars($_POST['kullanici_adsoyad']); echo "<br>";
+	echo $kullanici_mail=htmlspecialchars($_POST['kullanici_mail']); echo "<br>";
+
+	echo $kullanici_passwordone=$_POST['kullanici_passwordone']; echo "<br>";
+	echo $kullanici_passwordtwo=$_POST['kullanici_passwordtwo']; echo "<br>";
+
+
+	if ($kullanici_passwordone==$kullanici_passwordtwo) {
+
+
+		if ($kullanici_passwordone>=6) {
+
+
+// Başlangıç
+
+			$kullanicisor=$db->prepare("select * from kullanici where kullanici_mail=:mail");
+			$kullanicisor->execute(array(
+				'mail' => $kullanici_mail
+				));
+
+			//dönen satır sayısını belirtir
+			$say=$kullanicisor->rowCount();
+
+
+
+			if ($say==0) {
+
+				//md5 fonksiyonu şifreyi md5 şifreli hale getirir.
+				$password=md5($kullanici_passwordone);
+
+				$kullanici_yetki=1;
+
+			//Kullanıcı kayıt işlemi yapılıyor...
+				$kullanicikaydet=$db->prepare("INSERT INTO kullanici SET
+					kullanici_adsoyad=:kullanici_adsoyad,
+					kullanici_mail=:kullanici_mail,
+					kullanici_password=:kullanici_password,
+					kullanici_yetki=:kullanici_yetki
+					");
+				$insert=$kullanicikaydet->execute(array(
+					'kullanici_adsoyad' => $kullanici_adsoyad,
+					'kullanici_mail' => $kullanici_mail,
+					'kullanici_password' => $password,
+					'kullanici_yetki' => $kullanici_yetki
+					));
+
+				if ($insert) {
+
+
+					header("Location:../../index.php?durum=loginbasarili");
+
+
+				//Header("Location:../production/genel-ayarlar.php?durum=ok");
+
+				} else {
+
+
+					header("Location:../../register.php?durum=basarisiz");
+				}
+
+			} else {
+
+				header("Location:../../register.php?durum=mukerrerkayit");
+
+
+
+			}
+
+
+
+
+		// Bitiş
+
+
+
+		} else {
+
+
+			header("Location:../../register.php?durum=eksikparola");
+
+
+		}
+
+
+
+	} else {
+
+
+
+		header("Location:../../register.php?durum=farkliparola");
+	}
+	
+
+
+}
+
+
+//Admin giriş işlemleri
 if(isset($_POST['admingiris']))
 {
 	$kullanici_mail=$_POST['kullanici_mail'];
