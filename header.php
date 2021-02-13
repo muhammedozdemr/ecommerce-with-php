@@ -7,6 +7,13 @@ $ayarsor->execute(array(
 ));
 
 $ayarcek=$ayarsor->fetch(PDO::FETCH_ASSOC);
+
+$kullanicisor=$db->prepare("SELECT * FROM kullanici WHERE kullanici_mail=:mail");
+$kullanicisor->execute(array(
+  'mail' => $_SESSION['userkullanici_mail']
+));
+$say=$kullanicisor->rowCount();
+$kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,22 +58,28 @@ $ayarcek=$ayarsor->fetch(PDO::FETCH_ASSOC);
 				<div class="col-md-8">
 					<div class="pushright">
 						<div class="top">
-							<a href="#" id="reg" class="btn btn-default btn-dark">Giriş Yap<span>-- Or --</span>Kayıt Ol</a>
+							<?php if(isset($_SESSION['userkullanici_mail'])) { ?>
+							<a class="btn btn-default btn-dark">Hoşgeldin<span>
+							-- Or --</span><?php echo $kullanicicek['kullanici_adsoyad']; ?></a>
+							<?php } else { ?>
+							<a href="#" id="reg" class="btn btn-default btn-dark">Giriş Yap<span>
+							-- Or --</span>Kayıt Ol</a>
+						    <?php } ?>
 							<div class="regwrap">
 								<div class="row">
 									<div class="col-md-6 regform">
 										<div class="title-widget-bg">
 											<div class="title-widget">Kullanıcı Girişi</div>
 										</div>
-										<form role="form">
+										<form role="form" action="nedmin/netting/islem.php" method="POST">
 											<div class="form-group">
-												<input type="text" class="form-control" id="username" placeholder="Kullanıcı Adı">
+												<input type="text" class="form-control" id="username" name="kullanici_mail" placeholder="Kullanıcı Adı">
 											</div>
 											<div class="form-group">
-												<input type="password" class="form-control" id="password" placeholder="Parola">
+												<input type="password" class="form-control" id="password" name="kullanici_password" placeholder="Parola">
 											</div>
 											<div class="form-group">
-												<button class="btn btn-default btn-red btn-sm">Giriş Yap</button>
+												<button type="submit" name="kullanicigiris" class="btn btn-default btn-red btn-sm">Giriş Yap</button>
 											</div>
 										</form>
 									</div>
@@ -188,11 +201,14 @@ $ayarcek=$ayarsor->fetch(PDO::FETCH_ASSOC);
 							<div class="clearfix"></div>
 						</div>
 					</div>
+
+<?php if(isset($_SESSION['userkullanici_mail'])){?>
 					<ul class="small-menu"><!--small-nav -->
-						<li><a href="" class="myacc">My Account</a></li>
-						<li><a href="" class="myshop">Shopping Chart</a></li>
-						<li><a href="" class="mycheck">Checkout</a></li>
+						<li><a href="hesabim" class="myacc">Hesap</a></li>
+						<li><a href="siparislerim" class="myshop">Siparişlerim</a></li>
+						<li><a href="logout" class="mycheck">Çıkış</a></li>
 					</ul><!--small-nav -->
+<?php } ?>
 				</div>
 			</div>
 		</div>

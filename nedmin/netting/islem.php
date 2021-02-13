@@ -38,7 +38,7 @@ if (isset($_POST['kullanicikaydet'])) {
 				//md5 fonksiyonu şifreyi md5 şifreli hale getirir.
 				$password=md5($kullanici_passwordone);
 
-				$kullanici_yetki=1;
+				$kullanici_yetki=0;
 
 			//Kullanıcı kayıt işlemi yapılıyor...
 				$kullanicikaydet=$db->prepare("INSERT INTO kullanici SET
@@ -126,6 +126,35 @@ if(isset($_POST['admingiris']))
 		header("Location:../production/index.php");
 	}else{
 		header("Location:../production/login.php?durum=no");
+		exit;
+	}
+
+}
+
+//Kullanıcı Giriş
+if(isset($_POST['kullanicigiris']))
+{
+	echo $kullanici_mail=htmlspecialchars($_POST['kullanici_mail']);
+	echo $kullanici_password=md5($_POST['kullanici_password']);
+
+	$kullanicisor=$db->prepare("SELECT * FROM kullanici WHERE kullanici_mail=:mail and kullanici_password=:password and kullanici_yetki=:yetki and kullanici_durum=:durum");
+	$kullanicisor->execute(array(
+		'mail'=>$kullanici_mail,
+		'password'=>$kullanici_password,
+		'yetki'=>1,
+		'durum'=>1
+	));
+
+	$say=$kullanicisor->rowCount();
+
+	if($say==1)
+	{
+		echo $_SESSION['userkullanici_mail']=$kullanici_mail;
+
+		header("Location:../../");
+		exit;
+	}else{
+		header("Location:../../?durum=basarisiz");
 		exit;
 	}
 
