@@ -18,12 +18,12 @@ if (isset($_POST['kullanicikaydet'])) {
 	if ($kullanici_passwordone==$kullanici_passwordtwo) {
 
 
-		if ($kullanici_passwordone>=6) {
+		if (strlen($kullanici_passwordone>=6)) {
 
 
 // Başlangıç
 
-			$kullanicisor=$db->prepare("select * from kullanici where kullanici_mail=:mail");
+			$kullanicisor=$db->prepare("SELECT * FROM kullanici WHERE kullanici_mail=:mail");
 			$kullanicisor->execute(array(
 				'mail' => $kullanici_mail
 				));
@@ -158,6 +158,28 @@ if(isset($_POST['kullanicigiris']))
 		exit;
 	}
 
+}
+
+//Kullanıcı Bilgilerini Düzenle
+if(isset($_POST['bilgilerimiduzenle']))
+{
+	$kullanici_id=$_POST['kullanici_id'];
+	
+	$ayarkaydet=$db->prepare("UPDATE kullanici SET
+		kullanici_mail=:kullanici_mail,
+		kullanici_password=:kullanici_password
+		WHERE kullanici_id={$_POST['kullanici_id']}");
+
+	$update=$ayarkaydet->execute(array(
+		'kullanici_mail' =>$_POST['kullanici_mail'],
+		'kullanici_password' =>md5($_POST['kullanici_password'])
+		));
+
+	if ($update) {
+		header("Location:../../hesabim.php?durum=ok");
+	}else{
+		header("Location:../../hesabim.php?durum=no");
+	}
 }
 
 //Logo Güncelle
