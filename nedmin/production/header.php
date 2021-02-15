@@ -99,9 +99,10 @@ if($say==0)
                       <li> <a href="mail-ayar.php">Mail Ayarlar</a></li>
                     </ul>
                   </li>                
-                   <li><a href="hakkimizda.php"><i class="fa fa-info"></i> Hakkımızda  </a></li>              
-                   <li><a href="kullanici.php"><i class="fa fa-users"></i> Kullanıcılar  </a></li>              
+                   <li><a href="hakkimizda.php"><i class="fa fa-info"></i> Hakkımızda  </a></li> 
+                   <li><a href="kullanici.php"><i class="fa fa-users"></i> Kullanıcılar  </a></li>
                    <li><a href="menu.php"><i class="fa fa-list"></i> Menu  </a></li>              
+                   <li><a href="kategori.php"><i class="fa fa-image"></i> Kategoriler  </a></li>
                    <li><a href="slider.php"><i class="fa fa-image"></i> Slider  </a></li>              
                                  
                 </ul>
