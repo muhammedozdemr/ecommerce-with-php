@@ -657,7 +657,32 @@ if($_GET['kategorisil']=="ok"){
 		header("Location:../production/kategori.php?sil=no");
 	}
 }
+//Menü Ekle
+if(isset($_POST['kategoriekle']))
+{
 
+	$kategori_seourl=seo($_POST['kategori_ad']);
+
+	$kategoriekle=$db->prepare("INSERT INTO kategori SET
+		kategori_ad=:kategori_ad,
+		kategori_sira=:kategori_sira,
+		kategori_seourl=:kategori_seourl,
+		kategori_durum=:kategori_durum
+		");
+
+	$update=$kategoriekle->execute(array(
+		'kategori_ad' =>$_POST['kategori_ad'],
+		'kategori_sira' =>$_POST['kategori_sira'],
+		'kategori_seourl' =>$kategori_seourl,
+		'kategori_durum' =>$_POST['kategori_durum']
+	));
+
+	if ($insert) {
+		header("Location:../production/kategori.php?durum=ok");
+	}else{
+		header("Location:../production/kategori.php?durum=no");
+	}
+}
 
  
 ?>
