@@ -644,6 +644,20 @@ if(isset($_POST['kategoriduzenle']))
 	}
 }
 
+//Kategori Sil
+if($_GET['kategorisil']=="ok"){
+	$sil=$db->prepare("DELETE FROM kategori WHERE kategori_id=:id");
+	$kontrol=$sil->execute(array(
+		'id' => $_GET['kategori_id']
+	));
+
+	if($kontrol){
+		header("Location:../production/kategori.php?sil=ok");
+	}else{
+		header("Location:../production/kategori.php?sil=no");
+	}
+}
+
 
  
 ?>
