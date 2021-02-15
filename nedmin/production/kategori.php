@@ -1,6 +1,6 @@
 <?php 
 include 'header.php';
-$kategorisor=$db->prepare("SELECT * FROM kategori");
+$kategorisor=$db->prepare("SELECT * FROM kategori ORDER BY kategori_sira ASC");
 $kategorisor->execute();
 
  ?>  
@@ -34,10 +34,10 @@ $kategorisor->execute();
                       <thead>
                         <tr>
                           <th>S.No</th>
-                          <th>Menü Ad</th>
-                          <th>Menü URL</th>
-                          <th>Menü Sıra</th>
-                          <th>Menü Durum</th>
+                          <th>Kategori Ad</th>
+                          <th>Kategori URL</th>
+                          <th>Kategori Sıra</th>
+                          <th>Kategori Durum</th>
                           <th></th>
                           <th></th>
                         </tr>
