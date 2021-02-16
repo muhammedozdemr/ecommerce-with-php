@@ -684,5 +684,18 @@ if(isset($_POST['kategoriekle']))
 	}
 }
 
+//Ürün Sil
+if($_GET['urunsil']=="ok"){
+	$sil=$db->prepare("DELETE FROM urun WHERE urun_id=:id");
+	$kontrol=$sil->execute(array(
+		'id' => $_GET['urun_id']
+	));
+
+	if($kontrol){
+		header("Location:../production/urun.php?sil=ok");
+	}else{
+		header("Location:../production/urun.php?sil=no");
+	}
+}
  
 ?>

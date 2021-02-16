@@ -57,8 +57,8 @@ $urunsor->execute();
                           	<?php } ?>
                           		
                           </td>         
-                          <td><a href="urun-duzenle.php?menu_id=<?php echo $uruncek['menu_id'] ?>"><button class="btn btn-primary btn-xs">Düzenle</button></a></td>
-                          <td><a href="../netting/islem.php?menu_id=<?php echo $uruncek['menu_id']?>&menusil=ok"><button class="btn btn-danger btn-xs">Sil</button></td>
+                          <td><a href="urun-duzenle.php?urun_id=<?php echo $uruncek['urun_id'] ?>"><button class="btn btn-primary btn-xs">Düzenle</button></a></td>
+                          <td><a href="../netting/islem.php?urun_id=<?php echo $uruncek['urun_id']?>&urunsil=ok"><button class="btn btn-danger btn-xs">Sil</button></td>
                           	
                         </tr>
                     <?php } ?>
