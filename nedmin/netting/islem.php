@@ -657,7 +657,7 @@ if($_GET['kategorisil']=="ok"){
 		header("Location:../production/kategori.php?sil=no");
 	}
 }
-//Menü Ekle
+//Kategori Ekle
 if(isset($_POST['kategoriekle']))
 {
 
@@ -670,7 +670,7 @@ if(isset($_POST['kategoriekle']))
 		kategori_durum=:kategori_durum
 		");
 
-	$update=$kategoriekle->execute(array(
+	$insert=$kategoriekle->execute(array(
 		'kategori_ad' =>$_POST['kategori_ad'],
 		'kategori_sira' =>$_POST['kategori_sira'],
 		'kategori_seourl' =>$kategori_seourl,
@@ -697,5 +697,45 @@ if($_GET['urunsil']=="ok"){
 		header("Location:../production/urun.php?sil=no");
 	}
 }
+
+//Urun duzenle
+if(isset($_POST['urunduzenle']))
+{
+	$urun_id=$_POST['urun_id'];
+	$urun_seourl=seo($_POST['urun_ad']);
+
+	$kaydet=$db->prepare("UPDATE urun SET
+		kategori_id=:kategori_id,
+		urun_ad=:urun_ad,
+		urun_detay=:urun_detay,
+		urun_fiyat=:urun_fiyat,
+		urun_video=:urun_video,
+		urun_keyword=:urun_keyword,
+		urun_stok=:urun_stok,
+		urun_seourl=:urun_seourl,
+		urun_durum=:urun_durum
+		WHERE urun_id={$_POST['urun_id']}");
+
+	$update=$kaydet->execute(array(
+		'kategori_id'=>$_POST['kategori_id'],
+		'urun_ad' =>$_POST['urun_ad'],
+		'urun_detay' =>$_POST['urun_detay'],
+		'urun_fiyat' =>$_POST['urun_fiyat'],
+		'urun_video' =>$_POST['urun_video'],
+		'urun_keyword' =>$_POST['urun_keyword'],
+		'urun_stok' =>$_POST['urun_stok'],
+		'urun_seourl' =>$urun_seourl,
+		'urun_durum' =>$_POST['urun_durum']
+
+	));
+
+	if ($update) {
+		header("Location:../production/urun-duzenle.php?urun_id=$urun_id&durum=ok");
+	}else{
+		header("Location:../production/urun-duzenle.php?urun_id=$urun_id&durum=no");
+	}
+}
+
+
  
 ?>
