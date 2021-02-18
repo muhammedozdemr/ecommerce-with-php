@@ -38,6 +38,8 @@ $kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
 	<!-- owl Style -->
 	<link rel="stylesheet" href="css\owl.carousel.css">
 	<link rel="stylesheet" href="css\owl.transitions.css">
+
+	<link rel="stylesheet" href="js/product/jquery.fancybox.css?v=2.1.5" media="screen">
 	
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

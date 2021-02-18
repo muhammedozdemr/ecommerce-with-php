@@ -3,6 +3,7 @@ include 'header.php';
 $urunsor=$db->prepare("SELECT * FROM urun ORDER BY urun_id DESC");
 $urunsor->execute();
 
+
  ?>  
    <!-- page content -->
         <div class="right_col" role="main">

@@ -41,10 +41,10 @@ $urunsor->execute();
 						<div class="productwrap">
 							<div class="pr-img">
 								<div class="hot"></div>
-								<a href="product.htm"><img src="images\sample-3.jpg" alt="" class="img-responsive"></a>
-								<div class="pricetag on-sale"><div class="inner on-sale"><span class="onsale"><span class="oldprice"><?php echo $uruncek['urun_fiyat']*1.50; ?></span><?php echo $uruncek['urun_fiyat']; ?></span></div></div>
+								<a href="urun-<?=seo($uruncek['urun_ad'])?>"><img src="images\sample-3.jpg" alt="" class="img-responsive"></a>
+								<div class="pricetag on-sale"><div class="inner on-sale"><span class="onsale"><span class="oldprice"><?php echo $uruncek['urun_fiyat']*1.50; ?>₺</span><?php echo $uruncek['urun_fiyat']; ?>₺</span></div></div>
 							</div>
-							<span class="smalltitle"><a href="product.htm"><?php echo $uruncek['urun_ad']; ?></a></span>
+							<span class="smalltitle"><a href="urun-<?=seo($uruncek['urun_ad'])?>"><?php echo $uruncek['urun_ad']; ?></a></span>
 							<span class="smalldesc">Item no.: <?php echo $uruncek['urun_id']; ?></span>
 						</div>
 					</div>

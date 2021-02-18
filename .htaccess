@@ -16,3 +16,4 @@ RewriteRule ^(.*)$ $1.php
 
 RewriteRule ^sayfa-([0-9a-zA-Z-_]+) menu-detay.php?sef=$1 [L,QSA]
 RewriteRule ^kategori-([0-9a-zA-Z-_]+) kategoriler.php?sef=$1 [L,QSA]
+RewriteRule ^urun-([0-9a-zA-Z-_]+) urun-detay.php?sef=$1 [L,QSA]
