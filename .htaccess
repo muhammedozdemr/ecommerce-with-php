@@ -15,3 +15,4 @@ RewriteRule ^(.*)$ $1.php
 #ErrorDocument 404 http://www.siteadi.com
 
 RewriteRule ^sayfa-([0-9a-zA-Z-_]+) menu-detay.php?sef=$1 [L,QSA]
+RewriteRule ^kategori-([0-9a-zA-Z-_]+) kategoriler.php?sef=$1 [L,QSA]
