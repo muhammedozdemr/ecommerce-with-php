@@ -38,6 +38,7 @@ $urunsor->execute();
                           <th>Ürün Ad</th>
                           <th>Ürün Stok</th>
                           <th>Ürün Fiyat</th>
+                          <th>Ürün Öne Çıkan</th>
                           <th>Ürün Durum</th>
                           <th></th>
                           <th></th>
@@ -50,6 +51,14 @@ $urunsor->execute();
                           <td><?php echo $uruncek['urun_ad'] ?></td>
                           <td><?php echo $uruncek['urun_stok'] ?></td>
                           <td><?php echo $uruncek['urun_fiyat'] ?></td>
+                          <td>
+                            <?php if ($uruncek['urun_onecikar']==1) {?>
+                              <button class="btn btn-success btn-xs">Evet</button>
+                            <?php }else {?>
+                              <button class="btn btn-danger btn-xs">Hayır</button>
+                            <?php } ?>
+                              
+                          </td>   
                           <td>
                           	<?php if ($uruncek['urun_durum']==1) {?>
                           		<button class="btn btn-success btn-xs">Aktif</button>

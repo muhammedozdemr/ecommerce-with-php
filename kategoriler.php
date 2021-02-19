@@ -12,6 +12,7 @@ $urunsor=$db->prepare("SELECT * FROM urun WHERE kategori_id=:kategori_id ORDER B
 $urunsor->execute(array(
 	'kategori_id' =>$kategori_id
 ));
+
 }else{
 $urunsor=$db->prepare("SELECT * FROM urun ORDER BY urun_id DESC");
 $urunsor->execute();
