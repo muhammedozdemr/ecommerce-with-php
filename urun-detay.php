@@ -83,7 +83,16 @@ if($say==0){
 				<div class="tab-review">
 					<ul id="myTab" class="nav nav-tabs shop-tab">
 						<li <?php if($_GET['durum']!="ok"){?> class="active" <?php } ?>><a href="#desc" data-toggle="tab">Açıklama</a></li>
-						<li <?php if($_GET['durum']=="ok"){?> class="active" <?php } ?>><a href="#rev" data-toggle="tab">Yorumlar (0)</a></li><li class=""><a href="#video" data-toggle="tab">Ürün Video</a></li>
+						<li <?php if($_GET['durum']=="ok"){?> class="active" <?php } ?>>
+							<?php 
+							$kullanici_id=$kullanicicek['kullanici_id'];
+							$urun_id=$uruncek['urun_id'];
+							$yorumsor=$db->prepare("SELECT * FROM yorumlar WHERE urun_id=:urun_id");
+							$yorumsor->execute(array(
+							  'urun_id'=>$urun_id
+							));							
+							?>
+							<a href="#rev" data-toggle="tab">Yorumlar (<?php echo $yorumsor->rowCount();  ?>)</a></li><li class=""><a href="#video" data-toggle="tab">Ürün Video</a></li>
 					</ul>
 					<div id="myTabContent" class="tab-content shop-tab-ct">
 						<div class="tab-pane fade <?php if($_GET['durum']!="ok"){?>  active in <?php } ?>" id="desc">
@@ -92,10 +101,22 @@ if($say==0){
 							</p>
 						</div>
 						<div class="tab-pane fade <?php if($_GET['durum']=="ok"){?> active in <?php } ?>" id="rev">
+							<?php 
+
+							while($yorumcek=$yorumsor->fetch(PDO::FETCH_ASSOC)){ 
+								$ykullanici_id=$yorumcek['kullanici_id'];
+								$ykullanicisor=$db->prepare("SELECT * FROM kullanici WHERE kullanici_id=:id");
+								$ykullanicisor->execute(array(
+								  'id' => $ykullanici_id
+								));
+
+								$ykullanicicek=$ykullanicisor->fetch(PDO::FETCH_ASSOC);
+								?>
 							<p class="dash">
-							<span>Jhon Doe</span> (11/25/2012)<br><br>
-							Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse.
+							<span><?php echo $ykullanicicek['kullanici_adsoyad'] ?></span> (<?php echo $yorumcek['yorum_zaman'] ?>)<br><br>
+							<?php echo $yorumcek['yorum_detay'] ?>
 							</p>
+						<?php } ?>
 							<h4>Yorum Yazın</h4>
 
 							<?php if(isset($_SESSION['userkullanici_mail'])) {?>
@@ -107,6 +128,7 @@ if($say==0){
 
 							<input type="hidden" name="kullanici_id" value="<?php echo $kullanicicek['kullanici_id']; ?>" >
 							<input type="hidden" name="gelen_url" value="<?php echo "http://".$_SERVER['HTTP_HOST']."".$_SERVER['REQUEST_URI'].""; ?>">
+							<input type="hidden" name="urun_id" value="<?php echo $uruncek['urun_id'];?>">
 
 							<button type="submit" name="yorumkaydet" class="btn btn-default btn-red btn-sm">Gönder</button>
 						</form>
