@@ -32,10 +32,10 @@
 				<div class="item">
 					<div class="productwrap">
 						<div class="pr-img">
-							<a href="product.htm"><img src="images\sample-1.jpg" alt="" class="img-responsive"></a>
+							<a href="urun-<?=seo($uruncek['urun_ad'])?>"><img src="images\sample-1.jpg" alt="" class="img-responsive"></a>
 							<div class="pricetag blue"><div class="inner"><span><?php echo $uruncek['urun_fiyat']; ?> ₺</span></div></div>
 						</div>
-							<span class="smalltitle"><a href="product.htm"><?php echo $uruncek['urun_ad']; ?></a></span>
+							<span class="smalltitle"><a href="urun-<?=seo($uruncek['urun_ad'])?>"><?php echo $uruncek['urun_ad']; ?></a></span>
 							<span class="smalldesc">Ürün Kodu.: <?php echo $uruncek['urun_id']; ?></span>
 					</div>
 				</div>

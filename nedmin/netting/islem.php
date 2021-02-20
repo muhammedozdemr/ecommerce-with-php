@@ -780,5 +780,31 @@ if (isset($_POST['urunekle'])) {
 	}
 
 }
- 
+
+//Yorum Ekle
+if (isset($_POST['yorumkaydet'])) {
+	$gelen_url=$_POST['gelen_url'];
+
+	
+	$kaydet=$db->prepare("INSERT INTO yorumlar SET
+		kullanici_id=:kullanici_id,
+		yorum_detay=:yorum_detay
+		
+		
+		");
+	$insert=$kaydet->execute(array(
+		'kullanici_id' => $_POST['kullanici_id'],
+		'yorum_detay' => $_POST['yorum_detay']
+		));
+
+	if ($insert) {
+
+		Header("Location:$gelen_url?durum=ok");
+
+	} else {
+
+		Header("Location:$gelen_url?durum=no");
+	}
+
+} 
 ?>
