@@ -48,7 +48,7 @@ $yorumsor->execute();
                           <td><?php echo $yorumcek['urun_id'] ?></td>
                           <td><?php echo $yorumcek['yorum_detay'] ?></td>
                           <td><?php echo $yorumcek['yorum_zaman'] ?></td>         
-                          <td><a href="yorum-duzenle.php?yorum_id=<?php echo $yorumcekcek['yorum_id'] ?>"><button class="btn btn-primary btn-xs">Düzenle</button></a></td>
+                          <td></td>
                           <td><a href="../netting/islem.php?yorum_id=<?php echo $yorumcek['yorum_id']?>&yorumsil=ok"><button class="btn btn-danger btn-xs">Sil</button></td>
                           	
                         </tr>
