@@ -823,4 +823,33 @@ if($_GET['yorumsil']=="ok"){
 	}
 }
 
+//Sepete Ekle
+if (isset($_POST['sepetekle'])) {
+
+
+	
+	$kaydet=$db->prepare("INSERT INTO sepet SET
+		urun_adet=:urun_adet,
+		kullanici_id=:kullanici_id,
+		urun_id=:urun_id
+		
+		
+		");
+	$insert=$kaydet->execute(array(
+		'urun_adet' => $_POST['urun_adet'],
+		'kullanici_id' => $_POST['kullanici_id'],
+		'urun_id' => $_POST['urun_id']
+		));
+
+	if ($insert) {
+
+		Header("Location:../../sepet?durum=ok");
+
+	} else {
+
+		Header("Location:../../sepet?durum=no");
+	}
+
+} 
+
 ?>
