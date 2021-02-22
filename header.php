@@ -155,49 +155,48 @@ $kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
 						</div>
 					</div>
 					<div class="col-md-2 machart">
-						<button id="popcart" class="btn btn-default btn-chart btn-sm "><span class="mychart">Cart</span>|<span class="allprice">$0.00</span></button>
+						<button id="popcart" class="btn btn-default btn-chart btn-sm "><span class="mychart">Alışveriş Sepeti</span>|<span class="allprice">$0.00</span></button>
 						<div class="popcart">
 							<table class="table table-condensed popcart-inner">
 								<tbody>
+									
+								<?php
+							$kullanici_id=$kullanicicek['kullanici_id'];
+							$sepetsor=$db->prepare("SELECT * FROM sepet WHERE kullanici_id=:id");
+							$sepetsor->execute(array(
+								'id'=>$kullanici_id
+							));
+							while($sepetcek=$sepetsor->fetch(PDO::FETCH_ASSOC)){
+								$urun_id=$sepetcek['urun_id'];
+								$urunsor=$db->prepare("SELECT * FROM urun WHERE urun_id=:urun_id");
+								$urunsor->execute(array(
+								'urun_id'=>$urun_id
+							));
+							$uruncek=$urunsor->fetch(PDO::FETCH_ASSOC);
+							$toplam_fiyat+=$uruncek['urun_fiyat']*$sepetcek['urun_adet'];
+							?>
 									<tr>
 										<td>
 										<a href="product.htm"><img src="images\dummy-1.png" alt="" class="img-responsive"></a>
 										</td>
-										<td><a href="product.htm">Casio Exilim Zoom</a><br><span>Color: green</span></td>
-										<td>1X</td>
-										<td>$138.80</td>
+										<td><a href="product.htm"><?php echo $uruncek['urun_ad'] ?></td>
+										<td><?php echo $sepetcek['urun_adet'] ?> adet</td>
+										<td><?php echo $uruncek['urun_fiyat'] ?></td>
 										<td><a href=""><i class="fa fa-times-circle fa-2x"></i></a></td>
 									</tr>
-									<tr>
-										<td>
-										<a href="product.htm"><img src="images\dummy-1.png" alt="" class="img-responsive"></a>
-										</td>
-										<td><a href="product.htm">Casio Exilim Zoom</a><br><span>Color: green</span></td>
-										<td>1X</td>
-										<td>$138.80</td>
-										<td><a href=""><i class="fa fa-times-circle fa-2x"></i></a></td>
-									</tr>
-									<tr>
-										<td>
-										<a href="product.htm"><img src="images\dummy-1.png" alt="" class="img-responsive"></a>
-										</td>
-										<td><a href="product.htm">Casio Exilim Zoom</a><br><span>Color: green</span></td>
-										<td>1X</td>
-										<td>$138.80</td>
-										<td><a href=""><i class="fa fa-times-circle fa-2x"></i></a></td>
-									</tr>
+<?php } ?>
 								</tbody>
 							</table>
-							<span class="sub-tot">Sub-Total : <span>$277.60</span> | <span>Vat (17.5%)</span> : $36.00 </span>
+							
 							<br>
 							<div class="btn-popcart">
-								<a href="checkout.htm" class="btn btn-default btn-red btn-sm">Checkout</a>
-								<a href="cart.htm" class="btn btn-default btn-red btn-sm">More</a>
+								<a href="" class="btn btn-default btn-red btn-sm">Ödeme Sayfası</a>
+								
 							</div>
 							<div class="popcart-tot">
 								<p>
-									Total<br>
-									<span>$313.60</span>
+									Toplam Tutar<br>
+									<span><?php echo $toplam_fiyat ?> TL</span>
 								</p>
 							</div>
 							<div class="clearfix"></div>

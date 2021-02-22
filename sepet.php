@@ -1,14 +1,6 @@
 <?php include 'header.php'; ?>
 
-	<div class="container">
-		<ul class="small-menu"><!--small-nav -->
-			<li><a href="" class="myacc">My Account</a></li>
-			<li><a href="" class="myshop">Shopping Chart</a></li>
-			<li><a href="" class="mycheck">Checkout</a></li>
-		</ul><!--small-nav -->
-		<div class="clearfix"></div>
-		<div class="lines"></div>
-	</div>
+	
 	
 	<div class="container">
 		
