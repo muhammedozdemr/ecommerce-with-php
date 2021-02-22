@@ -21,27 +21,40 @@
 				<thead>
 					<tr>
 						<th>Remove</th>
-						<th>Image</th>
-						<th>Name</th>
-						<th>Model</th>
-						<th>Item No.</th>
-						<th>Quantity</th>
-						<th>Unit Price</th>
-						<th>Total</th>
+						<th>Ürün Resim</th>
+						<th>Ürün Ad</th>
+						<th>Ürün Kodu</th>
+						<th>Adet</th>
+						<th>Toplam Fiyat</th>
 					</tr>
 				</thead>
 				<tbody>
+					<?php
+					$kullanici_id=$kullanicicek['kullanici_id'];
+					$sepetsor=$db->prepare("SELECT * FROM sepet WHERE kullanici_id=:id");
+					$sepetsor->execute(array(
+						'id'=>$kullanici_id
+					));
+					while($sepetcek=$sepetsor->fetch(PDO::FETCH_ASSOC)){
+						$urun_id=$sepetcek['urun_id'];
+						$urunsor=$db->prepare("SELECT * FROM urun WHERE urun_id=:urun_id");
+						$urunsor->execute(array(
+							'urun_id'=>$urun_id
+						));
+						$uruncek=$urunsor->fetch(PDO::FETCH_ASSOC);
+						$toplam_fiyat+=$uruncek['urun_fiyat']*$sepetcek['urun_adet'];
+						?>
 					
 					<tr>
 						<td><form><input type="checkbox"></form></td>
 						<td><img src="images\demo-img.jpg" width="100" alt=""></td>
-						<td>Some Camera</td>
-						<td>PR - 2</td>
-						<td>225883</td>
-						<td><form><input type="text" class="form-control quantity"></form></td>
-						<td>$94.00</td>
-						<td>$94.00</td>
+						<td><?php echo $uruncek['urun_ad'] ?></td>
+						<td><?php echo $uruncek['urun_id'] ?></td>
+						<td><form><input type="text" class="form-control quantity" value="<?php echo $sepetcek['urun_adet']; ?>"></form></td>
+						<td><?php echo $uruncek['urun_fiyat'] ?></td>
+						
 					</tr>
+				<?php } ?>
 				</tbody>
 			</table>
 		</div>
@@ -52,11 +65,11 @@
 			</div>
 			<div class="col-md-3 col-md-offset-3">
 			<div class="subtotal-wrap">
-				<div class="subtotal">
-					<p>Sub Total : $26.00</p>
-					<p>Vat 17% : $54.00</p>
-				</div>
-				<div class="total">Total : <span class="bigprice">$255.00</span></div>
+				<!--<div class="subtotal">
+					<p>Toplam Fiyat : $26.00</p>
+					<p>KDV 17% : $54.00</p>
+				</div>-->
+				<div class="total">Total : <span class="bigprice"><?php echo $toplam_fiyat ?></span></div>
 				
 				<div class="clearfix"></div>
 				<a href="" class="btn btn-default btn-yellow">Ödeme Sayfası</a>
