@@ -852,4 +852,31 @@ if (isset($_POST['sepetekle'])) {
 
 } 
 
+//Banka Ekle
+if(isset($_POST['bankaekle']))
+{
+
+	
+
+	$bankaekle=$db->prepare("INSERT INTO banka SET
+		banka_ad=:banka_ad,
+		banka_hesapadsoyad=:banka_hesapadsoyad,
+		banka_iban=:banka_iban,
+		banka_durum=:banka_durum
+		");
+
+	$insert=$bankaekle->execute(array(
+		'banka_ad' =>$_POST['banka_ad'],
+		'banka_hesapadsoyad' =>$_POST['banka_hesapadsoyad'],
+		'banka_iban' =>$_POST['banka_iban'],
+		'banka_durum' =>$_POST['banka_durum']
+	));
+
+	if ($insert) {
+		header("Location:../production/banka.php?durum=ok");
+	}else{
+		header("Location:../production/banka.php?durum=no");
+	}
+}
+
 ?>

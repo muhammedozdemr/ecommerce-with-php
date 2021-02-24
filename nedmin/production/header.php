@@ -105,7 +105,8 @@ if($say==0)
                    <li><a href="menu.php"><i class="fa fa-list"></i> Menu  </a></li>              
                    <li><a href="kategori.php"><i class="fa fa-list"></i> Kategoriler  </a></li>
                    <li><a href="slider.php"><i class="fa fa-image"></i> Slider  </a></li>             
-                   <li><a href="yorumlar.php"><i class="fa fa-image"></i> Yorumlar  </a></li>             
+                   <li><a href="yorumlar.php"><i class="fa fa-comments"></i> Yorumlar  </a></li>             
+                   <li><a href="banka.php"><i class="fa fa-bank"></i> Bankalar  </a></li>             
                                  
                 </ul>
               </div>

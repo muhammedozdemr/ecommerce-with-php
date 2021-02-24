@@ -1,6 +1,6 @@
 <?php 
 include 'header.php';
-$bankasor=$db->prepare("SELECT * FROM banka ORDER BY banka_sira ASC");
+$bankasor=$db->prepare("SELECT * FROM banka ORDER BY banka_id ASC");
 $bankasor->execute();
 
  ?>  
