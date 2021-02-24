@@ -5,14 +5,14 @@
 	<div class="container">
 		
 		<div class="title-bg">
-			<div class="title">Alışveriş Sepetim</div>
+			<div class="title">Ödeme Sayfası</div>
 		</div>
 		
 		<div class="table-responsive">
 			<table class="table table-bordered chart">
 				<thead>
 					<tr>
-						<th>Remove</th>
+						
 						<th>Ürün Resim</th>
 						<th>Ürün Ad</th>
 						<th>Ürün Kodu</th>
@@ -38,11 +38,11 @@
 						?>
 					
 					<tr>
-						<td><form><input type="checkbox"></form></td>
+						
 						<td><img src="images\demo-img.jpg" width="100" alt=""></td>
 						<td><?php echo $uruncek['urun_ad'] ?></td>
 						<td><?php echo $uruncek['urun_id'] ?></td>
-						<td><form><input type="text" class="form-control quantity" value="<?php echo $sepetcek['urun_adet']; ?>"></form></td>
+						<td><form><?php echo $sepetcek['urun_adet']; ?></form></td>
 						<td><?php echo $uruncek['urun_fiyat'] ?></td>
 						
 					</tr>
@@ -64,11 +64,34 @@
 				<div class="total">Total : <span class="bigprice"><?php echo $toplam_fiyat ?></span></div>
 				
 				<div class="clearfix"></div>
-				<a href="odeme" class="btn btn-default btn-yellow">Ödeme Sayfası</a>
+				<a href="" class="btn btn-default btn-yellow">Ödeme Sayfası</a>
 			</div>
 			<div class="clearfix"></div>
 			</div>
 		</div>
+		<div class="tab-review">
+					<ul id="myTab" class="nav nav-tabs shop-tab">
+						<li class="active"><a href="#desc" data-toggle="tab">Kredi Kartı</a></li>
+						<li><a href="#rev" data-toggle="tab">Banka Havalesi</a></li>
+					</ul>
+					<div id="myTabContent" class="tab-content shop-tab-ct">
+						<div class="tab-pane fade" id="desc">
+							<p>
+							Entegrasyon Tamamlanmadı.
+							</p>
+						</div>
+						<div class="tab-pane fade" id="rev">
+							<p>
+							Banka
+							</p>
+							
+						</div>
+							
+					</div>
+					
+					
+					
+				</div>
 		<div class="spacer"></div>
 	</div>
 	

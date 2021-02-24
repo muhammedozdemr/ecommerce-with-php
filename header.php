@@ -190,7 +190,7 @@ $kullanicicek=$kullanicisor->fetch(PDO::FETCH_ASSOC);
 							
 							<br>
 							<div class="btn-popcart">
-								<a href="" class="btn btn-default btn-red btn-sm">Ödeme Sayfası</a>
+								<a href="sepet" class="btn btn-default btn-red btn-sm">Sepeti Görüntüle</a>
 								
 							</div>
 							<div class="popcart-tot">
