@@ -879,4 +879,31 @@ if(isset($_POST['bankaekle']))
 	}
 }
 
+//Banka Düzenle
+if(isset($_POST['bankaduzenle']))
+{
+	$banka_id=$_POST['banka_id'];
+
+	$kaydet=$db->prepare("UPDATE banka SET
+		banka_ad=:banka_ad,
+		banka_hesapadsoyad=:banka_hesapadsoyad,
+		banka_iban=:banka_iban,
+		banka_durum=:banka_durum
+		WHERE banka_id={$_POST['banka_id']}
+		");
+
+	$update=$kaydet->execute(array(
+		'banka_ad' =>$_POST['banka_ad'],
+		'banka_hesapadsoyad' =>$_POST['banka_hesapadsoyad'],
+		'banka_iban' =>$_POST['banka_iban'],
+		'banka_durum' =>$_POST['banka_durum']
+	));
+
+	if ($update) {
+		header("Location:../production/banka-duzenle.php?banka_id=$banka_id&durum=ok");
+	}else{
+		header("Location:../production/banka-duzenle.php?banka_id=$banka_id&durum=no");
+	}
+}
+
 ?>
