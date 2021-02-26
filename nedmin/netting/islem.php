@@ -905,5 +905,18 @@ if(isset($_POST['bankaduzenle']))
 		header("Location:../production/banka-duzenle.php?banka_id=$banka_id&durum=no");
 	}
 }
+//Banka Sil
+if($_GET['bankasil']=="ok"){
+	$sil=$db->prepare("DELETE FROM banka WHERE banka_id=:id");
+	$kontrol=$sil->execute(array(
+		'id' => $_GET['banka_id']
+	));
+
+	if($kontrol){
+		header("Location:../production/banka.php?bankasil=ok");
+	}else{
+		header("Location:../production/banka.php?bankasil=no");
+	}
+}
 
 ?>

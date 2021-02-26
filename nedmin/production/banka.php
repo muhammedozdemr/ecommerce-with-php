@@ -58,7 +58,7 @@ $bankasor->execute();
                           		
                           </td>         
                           <td><a href="banka-duzenle.php?banka_id=<?php echo $bankacek['banka_id'] ?>"><button class="btn btn-primary btn-xs">Düzenle</button></a></td>
-                          <td><a href="../netting/islem.php?kategori_id=<?php echo $bankacek['banka_id']?>&bankasil=ok"><button class="btn btn-danger btn-xs">Sil</button></td>
+                          <td><a href="../netting/islem.php?banka_id=<?php echo $bankacek['banka_id']?>&bankasil=ok"><button class="btn btn-danger btn-xs">Sil</button></td>
                           	
                         </tr>
                     <?php } ?>
