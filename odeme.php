@@ -81,10 +81,21 @@
 							</p>
 						</div>
 						<div class="tab-pane fade" id="rev">
+							<form action="nedmin/netting/islem.php" method="POST">
 							<p>
-							Banka
+								Ödeme Yapacağınız hesap numarasını seçerek işleminizi tamamlayınız.
 							</p>
-							
+							<?php
+							$bankasor=$db->prepare("SELECT * FROM banka ORDER BY banka_id ASC");
+							$bankasor->execute();
+							while($bankacek=$bankasor->fetch(PDO::FETCH_ASSOC)){?>
+							<input type="radio" name="banka_id" value="<?php echo $bankacek['banka_id']; ?>">
+							<?php echo $bankacek['banka_ad'];?><br>
+
+							<?php } ?>
+							<hr>
+							<button class="btn btn-success" type="submit" name="sipariskaydet">Sipariş Ver</button>
+							</form>
 						</div>
 							
 					</div>
