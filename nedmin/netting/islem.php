@@ -166,13 +166,16 @@ if(isset($_POST['bilgilerimiduzenle']))
 	$kullanici_id=$_POST['kullanici_id'];
 	
 	$ayarkaydet=$db->prepare("UPDATE kullanici SET
-		kullanici_mail=:kullanici_mail,
-		kullanici_password=:kullanici_password
+		kullanici_adsoyad=:kullanici_adsoyad,
+		kullanici_il=:kullanici_il,
+		kullanici_ilce=:kullanici_ilce
 		WHERE kullanici_id={$_POST['kullanici_id']}");
 
 	$update=$ayarkaydet->execute(array(
-		'kullanici_mail' =>$_POST['kullanici_mail'],
-		'kullanici_password' =>md5($_POST['kullanici_password'])
+		'kullanici_adsoyad' =>$_POST['kullanici_adsoyad'],
+		'kullanici_il' =>$_POST['kullanici_il'],
+		'kullanici_ilce' =>$_POST['kullanici_ilce'],
+		
 		));
 
 	if ($update) {

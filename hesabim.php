@@ -30,18 +30,17 @@
 				<div class="form-group dob">
 					<div class="col-sm-12">
 						
-						<input type="text" class="form-control"  required="" name="kullanici_adsoyad" disabled="" value="<?php echo $kullanicicek['kullanici_adsoyad']; ?>">
+						<input type="text" class="form-control"  required="" name="kullanici_adsoyad" value="<?php echo $kullanicicek['kullanici_adsoyad']; ?>">
 					</div>
 					
 				</div>
-				<div class="form-group">
-					<div class="col-sm-12">
-						<input type="email" class="form-control" required="" name="kullanici_mail" value="<?php echo $kullanicicek['kullanici_mail']; ?>">
-					</div>
-				</div>
+				
 				<div class="form-group dob">
-					<div class="col-sm-12">
-						<input type="password" class="form-control" name="kullanici_password" value="<?php echo $kullanicicek['kullanici_password']; ?>">
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="kullanici_il" value="<?php echo $kullanicicek['kullanici_il']; ?>">
+					</div>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" name="kullanici_ilce" value="<?php echo $kullanicicek['kullanici_ilce']; ?>">
 					</div>
 					
 				</div>
