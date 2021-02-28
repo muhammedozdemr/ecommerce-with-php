@@ -9,7 +9,7 @@
 				<div class="page-title-inner">
 					<div class="row">
 						<div class="col-md-12">
-							<div class="bigtitle">Hesap Bilgilerim</div>
+							<div class="bigtitle">Parola Güncelle</div>
 							<p >Bilgilerinizi aşağıdan düzenleyebilirsiniz</p>
 						</div>
 						
@@ -57,7 +57,7 @@
 				</div>
 
 
-				<center><img width="400" src="dimg/pass.jpeg"></center>
+				<center><a href="password-guncelle"><img width="400" src="dimg/pass.jpeg"></a></center>
 			</div>
 		</div>
 	</div>
