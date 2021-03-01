@@ -61,7 +61,7 @@
 					<p>Toplam Fiyat : $26.00</p>
 					<p>KDV 17% : $54.00</p>
 				</div>-->
-				<div class="total">Total : <span class="bigprice"><?php echo $toplam_fiyat ?></span></div>
+				<div class="total">Total : <span class="bigprice"><?php echo $toplam_fiyat; ?></span></div>
 				
 				<div class="clearfix"></div>
 				<a href="odeme" class="btn btn-default btn-yellow">Ödeme Sayfası</a>

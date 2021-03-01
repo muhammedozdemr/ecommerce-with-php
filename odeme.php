@@ -93,8 +93,10 @@
 							<?php echo $bankacek['banka_ad'];?><br>
 
 							<?php } ?>
+							<input type="hidden" name="kullanici_id" value="<?php echo $kullanicicek['kullanici_id']; ?>">
+							<input type="hidden" name="siparis_toplam" value="<?php echo $toplam_fiyat; ?>">
 							<hr>
-							<button class="btn btn-success" type="submit" name="sipariskaydet">Sipariş Ver</button>
+							<button class="btn btn-success" type="submit" name="bankasiparisekle">Sipariş Ver</button>
 							</form>
 						</div>
 							

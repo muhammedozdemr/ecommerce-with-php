@@ -1031,4 +1031,31 @@ if (isset($_POST['kullaniciparolaguncelle'])) {
 
 }
 
+//Siparis Ekle
+if(isset($_POST['bankasiparisekle']))
+{
+
+	$siparis_tip="Banka Havalesi";
+
+	$kaydet=$db->prepare("INSERT INTO siparis SET
+		kullanici_id=:kullanici_id,
+		siparis_tip=:siparis_tip,
+		siparis_banka=:siparis_banka,
+		siparis_toplam=:siparis_toplam
+		");
+
+	$insert=$kaydet->execute(array(
+		'kullanici_id' =>$_POST['kullanici_id'],
+		'siparis_tip' =>$siparis_tip,
+		'siparis_banka' =>$_POST['siparis_banka'],
+		'siparis_toplam' =>$_POST['siparis_toplam']
+	));
+
+	if ($insert) {
+		header("Location:../production/siparis.php?durum=ok");
+	}else{
+		header("Location:../production/siparis.php?durum=no");
+	}
+}
+
 ?>
